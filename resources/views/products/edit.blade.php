@@ -7,7 +7,7 @@
                 <h2>Edit Product</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.products.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         </div>
     @endif
   
-    <form action="{{ route('products.update',$product->id) }}" method="POST">
+    <form action="{{ route('admin.products.update',$product->id) }}" method="POST">
         @csrf
         @method('PUT')
    
@@ -32,6 +32,19 @@
                 <div class="form-group">
                     <strong>Name:</strong>
                     <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>category:</strong>
+                    <select class="form-select" id="basic-usage" name="category_id" data-placeholder="Category">
+                        <option value=""></option>
+                        @foreach($category as $cat)
+                        <option value="{{ $cat->id }}" {{ $product->category_id == $cat->id  ? "selected" : "" }} >{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+
+
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
